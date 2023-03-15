@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class APIConsumer {
     
-    public static void main(String[] args) {
+    public static void serachUniversity() {
         Scanner apiSC = new Scanner(System.in);
         System.out.print("Enter the name of the country: ");
         String countryInput = apiSC.nextLine();
