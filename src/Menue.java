@@ -2,12 +2,13 @@ import java.util.*;
 
 public class Menue {
 	Scanner menueSc = new Scanner(System.in);
+	static APIConsumer newAPI = new APIConsumer();
 	
 	public void showMenue() {
 		boolean menueLoop = true;
 		while (menueLoop) {
 			HashMap<Integer, String> menuOptions = new HashMap<Integer, String>();
-			 menuOptions.put(1, "Enter the name of the country to view all the universites: ");
+			 menuOptions.put(1, "Search the name of the country ");
 			 menuOptions.put(2, "Enter the name of the database: ");
 			 menuOptions.put(3, "Need suggestions? choose me!");
 			 menuOptions.put(4, "Manage Shop Settings");
@@ -32,6 +33,9 @@ public class Menue {
 		            
 		            switch (choice) {
 		            case 1:
+		            	newAPI.serachUniversity();
+		            	break;
+		            case 2:
 		            	break;
 		            }
 		}
