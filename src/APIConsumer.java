@@ -47,7 +47,7 @@ public class APIConsumer {
 					System.out.println("\tDomain " + (j + 1) + ": " + myUni.domains[j]);
 				}
 
-				for (int m = 0; km < myUni.web_pages.length; m++) {
+				for (int m = 0; m < myUni.web_pages.length; m++) {
 					System.out.println("\tWeb page " + (m) + ": " + myUni.web_pages[m]);
 
 				}
