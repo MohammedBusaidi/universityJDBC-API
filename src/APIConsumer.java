@@ -32,7 +32,6 @@ public class APIConsumer {
             while ((output = br.readLine()) != null) {
                 json.append(output);
             }
-            
             conn.disconnect();
             // switch from Json to object.
             //we use Gson to read Json.
