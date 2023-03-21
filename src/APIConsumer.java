@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 public class APIConsumer {
 	static ArrayList<String> countryList = new ArrayList<>();
+	static University[] uni;
 
 	public void searchByCountry() {
 		Scanner apiSC = new Scanner(System.in);
@@ -37,7 +38,7 @@ public class APIConsumer {
 			// switch from Json to object.
 			// we use Gson to read Json.
 			Gson gson = new Gson();
-			University[] uni = gson.fromJson(json.toString(), University[].class);
+			uni = gson.fromJson(json.toString(), University[].class);
 			System.out.println("=============================================================================");
 			for (int i = 0; i < uni.length; i++) {
 				University myUni = uni[i];
@@ -79,9 +80,9 @@ public class APIConsumer {
 			}
 			conn.disconnect();
 			Gson gson = new Gson();
-			University[] uni = gson.fromJson(json.toString(), University[].class);
+			uni = gson.fromJson(json.toString(), University[].class);
 			int j = 0;
-			for (int i =0; i < uni.length; i++) {
+			for (int i = 0; i < uni.length; i++) {
 				University myUni = uni[i];
 				if (!countryList.contains(myUni.country)) {
 					j++;

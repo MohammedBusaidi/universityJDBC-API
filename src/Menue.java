@@ -10,16 +10,17 @@ public class Menue {
 		boolean menueLoop = true;
 		while (menueLoop) {
 			HashMap<Integer, String> menuOptions = new HashMap<Integer, String>();
-			 menuOptions.put(1, "Search the name of the country to fetch universites");
-			 menuOptions.put(2, "Need suggestions of Countries? choose me!");
-			 menuOptions.put(3, "Manage Shop Settings");
-			 menuOptions.put(4, "Backup Database");
-			 menuOptions.put(5, "Remove Table");
-			 menuOptions.put(6, "Show all universites");
-			 menuOptions.put(7, "fetch Data");
-			 menuOptions.put(8, "Search by: ");
-			 menuOptions.put(9, "Dump data into file");
-			 menuOptions.put(10, "Exit");
+			 menuOptions.put(1, "Initialize Database");
+			 menuOptions.put(2, "Search the name of the country to fetch universites");
+			 menuOptions.put(3, "Need suggestions of Countries? choose me!");
+			 menuOptions.put(4, "Insert Data");
+			 menuOptions.put(5, "Backup Database");
+			 menuOptions.put(6, "Remove Table");
+			 menuOptions.put(7, "Show all universites");
+			 menuOptions.put(8, "fetch Data");
+			 menuOptions.put(9, "Search by: ");
+			 menuOptions.put(10, "Dump data into file");
+			 menuOptions.put(11, "Exit");
 			 
 			 int choice = 0;
 		        
@@ -34,13 +35,16 @@ public class Menue {
 		            
 		            switch (choice) {
 		            case 1:
-		            	newAPI.searchByCountry();
+		            	jdbc.initializeDatabase();
 		            	break;
 		            case 2:
-		            	newAPI.showListOfCountries();
+		            	newAPI.searchByCountry();
 		            	break;
 		            case 3: 
-		            	System.out.println("hi");
+		            	newAPI.showListOfCountries();
+		            	break;
+		            case 4:
+						jdbc.insert_data_universities();
 		            	break;
 		            }
 		}

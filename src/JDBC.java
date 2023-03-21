@@ -1,11 +1,9 @@
 import java.sql.*;
 
 public class JDBC {
-	
-	
-	public void contryTable() {
-		String url = "jdbc:sqlserver://localhost:1433;" + "databaseName=" + Access.databaseName + ";" + "encrypt=true;"
-				+ "trustServerCertificate=true";
+
+	public void initializeDatabase() {
+		String url = "jdbc:sqlserver://" + "localhost:1433;" + "encrypt=true;" + "trustServerCertificate=true";
 		Connection con = null;
 
 		try {
@@ -13,19 +11,69 @@ public class JDBC {
 			DriverManager.registerDriver(driver);
 
 			con = DriverManager.getConnection(url, Access.user, Access.pass);
-			Statement st = (Statement) con.createStatement();
+			Statement st = con.createStatement();
 
-			// Create table
-			String sql = "IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Countries') " 
-		             + "CREATE TABLE Countries (Country_Name VARCHAR(50)); "
-		             + "truncate table Countries; "
-		             + "INSERT INTO Countries (Country_Name) ";
-			((java.sql.Statement) st).executeUpdate(sql);
-			System.out.println(" TABLE CREATED");
+			// Check if the database exists
+			String sql = "SELECT * FROM sys.databases WHERE name='" + Access.databaseName + "'";
+			ResultSet rs = st.executeQuery(sql);
+
+			if (rs.next()) {
+				// Update url with the existing database name
+				url += ";databaseName=" + Access.databaseName;
+				con = DriverManager.getConnection(url, Access.user, Access.pass);
+				Statement st2 = con.createStatement();
+
+				// Check if the universities table exists
+				String sql1 = "SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'universities'";
+				rs = st2.executeQuery(sql1);
+
+				if (!rs.next()) {
+					// Create table if it doesn't exist
+					String sql2 = "CREATE TABLE universities (\r\n" + "  id INTEGER IDENTITY PRIMARY KEY,\r\n"
+							+ "  name VARCHAR(255),\r\n" + "  country VARCHAR(255),\r\n"
+							+ "  state_province VARCHAR(255),\r\n" + "  domains VARCHAR(MAX),\r\n"
+							+ "  web_pages VARCHAR(MAX),\r\n" + "  alpha_two_code VARCHAR(2)\r\n" + ");";
+					st2.executeUpdate(sql2);
+					System.out.println("TABLE CREATED!");
+				} else {
+					System.out.println("Table already exists!");
+				}
+			}
 			con.close();
 		} catch (Exception ex) {
 			System.err.println(ex);
 		}
+	}
 
-	} 
+	public void insert_data_universities() {
+		String url = "jdbc:sqlserver://" + "localhost:1433;" + "encrypt=true;" + "trustServerCertificate=true";
+		Connection con = null;
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+
+			con = DriverManager.getConnection(url, Access.user, Access.pass);
+			Statement st = con.createStatement();
+
+			url += ";databaseName=" + Access.databaseName;
+			con = DriverManager.getConnection(url, Access.user, Access.pass);
+
+			String sql = "INSERT INTO universities(name, country, state_province, domains, web_pages, alpha_two_code) VALUES (?, ?, ?, ?, ?, ?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			University[] uni = APIConsumer.uni;
+			for (University myUni : uni) {
+				ps.setString(1, myUni.name);
+				ps.setString(2, myUni.country);
+				ps.setString(3, myUni.state_province);
+				ps.setString(4, String.join(",", myUni.domains));
+				ps.setString(5, String.join(",", myUni.web_pages));
+				ps.setString(6, myUni.alpha_two_code);
+				ps.executeUpdate();
+			}
+			System.out.println("DATA INSERTED!");
+			con.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
 }
