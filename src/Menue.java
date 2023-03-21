@@ -10,8 +10,8 @@ public class Menue {
 		boolean menueLoop = true;
 		while (menueLoop) {
 			HashMap<Integer, String> menuOptions = new HashMap<Integer, String>();
-			 menuOptions.put(1, "Search the name of the country");
-			 menuOptions.put(2, "Need suggestions? choose me!");
+			 menuOptions.put(1, "Search the name of the country to fetch universites");
+			 menuOptions.put(2, "Need suggestions of Countries? choose me!");
 			 menuOptions.put(3, "Manage Shop Settings");
 			 menuOptions.put(4, "Backup Database");
 			 menuOptions.put(5, "Remove Table");
@@ -34,10 +34,10 @@ public class Menue {
 		            
 		            switch (choice) {
 		            case 1:
-		            	newAPI.serachUniversity();
+		            	newAPI.searchByCountry();
 		            	break;
 		            case 2:
-		            	jdbc.contryTable();
+		            	newAPI.showListOfCountries();
 		            	break;
 		            case 3: 
 		            	System.out.println("hi");
