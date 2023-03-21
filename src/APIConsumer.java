@@ -95,4 +95,22 @@ public class APIConsumer {
 		}
 
 	}
+
+	public void printAllUni() {
+		System.out.println("=============================================================================");
+		for (int i = 0; i < uni.length; i++) {
+			University myUni = uni[i];
+			System.out.println((i + 1) + ":\t" + myUni.state_province + " - " + myUni.country + " - " + myUni.name
+					+ " - " + myUni.alpha_two_code);
+			for (int j = 0; j < myUni.domains.length; j++) {
+				System.out.println("\tDomain " + (j + 1) + ": " + myUni.domains[j]);
+			}
+
+			for (int m = 0; m < myUni.web_pages.length; m++) {
+				System.out.println("\tWeb page " + (m) + ": " + myUni.web_pages[m]);
+
+			}
+			System.out.println("=============================================================================");
+		}
+	}
 }

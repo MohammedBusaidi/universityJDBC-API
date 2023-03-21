@@ -13,7 +13,7 @@ public class Menue {
 			 menuOptions.put(1, "Initialize Database");
 			 menuOptions.put(2, "Search the name of the country to fetch universites");
 			 menuOptions.put(3, "Need suggestions of Countries? choose me!");
-			 menuOptions.put(4, "Insert Data");
+			 menuOptions.put(4, "Insert the Data");
 			 menuOptions.put(5, "Backup Database");
 			 menuOptions.put(6, "Remove Table");
 			 menuOptions.put(7, "Show all universites");
@@ -48,6 +48,12 @@ public class Menue {
 		            	break;
 		            case 5:
 		            	jdbc.backupDatabase();
+		            	break;
+		            case 6:
+		            	jdbc.removeTable();
+		            	break;
+		            case 7:
+		            	newAPI.printAllUni();
 		            	break;
 		            }
 		}

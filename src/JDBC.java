@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.IOException;
 import java.sql.*;
 
 public class JDBC {
@@ -84,7 +83,7 @@ public class JDBC {
 		File backupFile = new File("backup_file.sql");
 		try {
 			backupFile.createNewFile();
-		} catch (IOException e1) {
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -101,10 +100,32 @@ public class JDBC {
 			} else {
 				System.out.println("Could not create the backup");
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public void removeTable() {
+		String url = "jdbc:sqlserver://" + "localhost:1433;" + "encrypt=true;" + "trustServerCertificate=true";
+		Connection con = null;
+
+		try {
+			Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			DriverManager.registerDriver(driver);
+			
+			url += ";databaseName=" + Access.databaseName;
+			con = DriverManager.getConnection(url, Access.user, Access.pass);
+			Statement st = con.createStatement();
+
+			String sql = "drop table universities;";
+			st.executeUpdate(sql);
+
+			System.out.println("TABLE REMOVED!");
+			con.close();
+			st.close();
+		} catch (Exception ex) {
+			System.err.println(ex);
+		}
+	}
+	
 }
