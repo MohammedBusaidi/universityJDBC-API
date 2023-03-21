@@ -46,6 +46,9 @@ public class Menue {
 		            case 4:
 						jdbc.insert_data_universities();
 		            	break;
+		            case 5:
+		            	jdbc.backupDatabase();
+		            	break;
 		            }
 		}
 	}

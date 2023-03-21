@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 
 public class JDBC {
@@ -74,6 +76,35 @@ public class JDBC {
 			con.close();
 		} catch (Exception ex) {
 			System.err.println(ex);
+		}
+	}
+
+	public void backupDatabase() {
+		//create a new file
+		File backupFile = new File("backup_file.sql");
+		try {
+			backupFile.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String filePath = "backup_file.sql";
+
+		try {
+			Process process = Runtime.getRuntime().exec("mysqldump -u " + Access.user + " -p" + Access.pass
+					+ " --add-drop-database -B " + Access.databaseName + " -r " + filePath);
+			int processComplete = process.waitFor();
+
+			if (processComplete == 0) {
+				System.out.println("Backup created successfully");
+			} else {
+				System.out.println("Could not create the backup");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 }
