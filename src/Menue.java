@@ -64,9 +64,11 @@ public class Menue {
 							jdbc.fetchDataFromDatabase();
 							break;
 						} else if (fetchInput == 2) {
-
+							newAPI.fetchDataFromApi();
+							break;
+						} else {
+							fetchLoop = false;
 						}
-						else {fetchLoop = false;}
 					}
 
 					break;
