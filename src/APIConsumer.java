@@ -113,4 +113,7 @@ public class APIConsumer {
 			System.out.println("=============================================================================");
 		}
 	}
+	public void fetchDataFromApi() {
+		
+	}
 }
