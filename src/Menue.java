@@ -4,6 +4,7 @@ public class Menue {
 	Scanner menueSc = new Scanner(System.in);
 	static APIConsumer newAPI = new APIConsumer();
 	static JDBC jdbc = new JDBC();
+	static SearchData search = new SearchData();
 
 	public void showMenue() {
 		boolean menueLoop = true;
@@ -19,13 +20,14 @@ public class Menue {
 			menuOptions.put(8, "fetch Data");
 			menuOptions.put(9, "Search by: ");
 			menuOptions.put(10, "Dump data into file");
-			menuOptions.put(11, "Exit");
+			menuOptions.put(11, "Retrive data From file");
+			menuOptions.put(12, "Exit");
 
 			int choice = 0;
 
-			while (choice != 11) {
+			while (choice != 12) {
 				System.out.println("==================UNIVERSITIES DATABASE==================");
-				for (int i = 1; i <= 11; i++) {
+				for (int i = 1; i <= 12; i++) {
 					System.out.println(i + ". " + menuOptions.get(i));
 				}
 				System.out.println("=========================================================");
@@ -57,8 +59,8 @@ public class Menue {
 				case 8:
 					boolean fetchLoop = true;
 					while (fetchLoop) {
-						System.out.println("1- By Database:");
-						System.out.println("2- By API:");
+						System.out.println("1- By Database");
+						System.out.println("2- By API");
 						int fetchInput = menueSc.nextInt();
 						if (fetchInput == 1) {
 							jdbc.fetchDataFromDatabase();
@@ -70,7 +72,19 @@ public class Menue {
 							fetchLoop = false;
 						}
 					}
-
+					break;
+				case 9:
+//					search.searchAndInsertIntoDatabase();
+					break;
+				case 10:
+//					File save = new File();
+//					save.dumpToFile();
+					break;
+				case 11:
+					break;
+				case 12:
+					System.out.println("GOOD BYE!");
+					System.exit(0);
 					break;
 				}
 			}

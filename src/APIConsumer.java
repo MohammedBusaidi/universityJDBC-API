@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 public class APIConsumer {
 	static ArrayList<String> countryList = new ArrayList<>();
 	static University[] uni;
+	ArrayList<University> uniList = new ArrayList<>();
 
 	public void searchByCountry() {
 		Scanner apiSC = new Scanner(System.in);
