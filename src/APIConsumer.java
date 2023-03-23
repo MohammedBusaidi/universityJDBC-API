@@ -1,15 +1,15 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 import com.google.gson.Gson;
 
-public class APIConsumer {
+public class APIConsumer implements Serializable {
 	static ArrayList<String> countryList = new ArrayList<>();
 	static University[] uni;
-	ArrayList<University> uniList = new ArrayList<>();
 
 	public void searchByCountry() {
 		Scanner apiSC = new Scanner(System.in);

@@ -31,20 +31,22 @@ public class SearchData {
 			pst.setString(1, searchQuery);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
+				int id = rs.getInt("ID");
 				String name = rs.getString("Name");
 				String country = rs.getString("Country");
-				String stateProvince = rs.getString("State_Province");
+				String state_province = rs.getString("State_Province");
 				String domains = rs.getString("Domains");
-				String webPages = rs.getString("Web_Pages");
-				String alphaTwoCode = rs.getString("Alpha_Two_Code");
-				System.out.println("---------------------------------------------------------");
+				String web_pages = rs.getString("Web_Pages");
+				String alpha_two_code = rs.getString("Alpha_Two_Code");
+				System.out.println("=========================================================");
+				System.out.println("ID: " + id);
 				System.out.println("Name: " + name);
 				System.out.println("Country: " + country);
-				System.out.println("State/Province: " + stateProvince);
+				System.out.println("State/Province: " + state_province);
 				System.out.println("Domains: " + domains);
-				System.out.println("Web Pages: " + webPages);
-				System.out.println("Alpha Two Code: " + alphaTwoCode);
-				System.out.println(".........................................................");
+				System.out.println("Web Pages: " + web_pages);
+				System.out.println("Alpha Two Code: " + alpha_two_code);
+				System.out.println("=========================================================");
 			}
 
 			con.close();

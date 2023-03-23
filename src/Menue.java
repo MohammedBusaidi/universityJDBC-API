@@ -77,8 +77,8 @@ public class Menue {
 					search.searchFromDatabase();;
 					break;
 				case 10:
-//					File save = new File();
-//					save.dumpToFile();
+					File save = new File();
+					save.dumpToFile();
 					break;
 				case 11:
 					break;

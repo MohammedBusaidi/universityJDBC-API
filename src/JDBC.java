@@ -153,10 +153,15 @@ public class JDBC {
 				String domains = rs.getString("Domains");
 				String web_pages = rs.getString("Web_Pages");
 				String alpha_two_code = rs.getString("Alpha_Two_Code");
-				System.out.println(
-
-						id + ", " + name + ", " + country + ", " + state_province + ", " + domains + ", " + web_pages
-								+ ", " + alpha_two_code);
+				System.out.println("=========================================================");
+				System.out.println("ID: " + id);
+				System.out.println("Name: " + name);
+				System.out.println("Country: " + country);
+				System.out.println("State/Province: " + state_province);
+				System.out.println("Domains: " + domains);
+				System.out.println("Web Pages: " + web_pages);
+				System.out.println("Alpha Two Code: " + alpha_two_code);
+				System.out.println("=========================================================");
 			}
 			System.out.println("DATA FETCHED!");
 			con.close();

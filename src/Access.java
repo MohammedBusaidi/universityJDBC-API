@@ -27,9 +27,9 @@ public class Access {
 			// Check if the entered credentials match the expected values
 			if (databaseInput.equals(expectedDatabase) && userInput.equals(expectedUser)
 					&& passInput.equals(expectedPass)) {
-				giveUserAccess.databaseName = databaseInput;
-				giveUserAccess.user = userInput;
-				giveUserAccess.pass = passInput;
+				Access.databaseName = databaseInput;
+				Access.user = userInput;
+				Access.pass = passInput;
 				System.out.println("Access granted");
 				menue.showMenue();
 			} else {
