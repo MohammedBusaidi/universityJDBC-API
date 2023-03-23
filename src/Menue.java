@@ -19,9 +19,9 @@ public class Menue {
 			menuOptions.put(7, "Show all universites");
 			menuOptions.put(8, "fetch Data");
 			menuOptions.put(9, "Search by: ");
-			menuOptions.put(10, "Dump data into file");
-			menuOptions.put(11, "Retrive data From file");
-			menuOptions.put(12, "Exit");
+			menuOptions.put(10,"Dump data into file");
+			menuOptions.put(11,"Retrive data From file");
+			menuOptions.put(12,"Exit");
 
 			int choice = 0;
 
@@ -45,7 +45,7 @@ public class Menue {
 					newAPI.showListOfCountries();
 					break;
 				case 4:
-					jdbc.insert_data_universities();
+					jdbc.insertData();
 					break;
 				case 5:
 					jdbc.backupDatabase();
@@ -74,7 +74,7 @@ public class Menue {
 					}
 					break;
 				case 9:
-//					search.searchAndInsertIntoDatabase();
+					search.searchFromDatabase();;
 					break;
 				case 10:
 //					File save = new File();
