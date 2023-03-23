@@ -1,13 +1,14 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 import com.google.gson.Gson;
 
-public class APIConsumer implements Serializable {
+public class APIConsumer {
 	static ArrayList<String> countryList = new ArrayList<>();
 	static University[] uni;
 
@@ -113,6 +114,7 @@ public class APIConsumer implements Serializable {
 			}
 			System.out.println("=============================================================================");
 		}
+
 	}
 
 	public void fetchDataFromApi() {
@@ -153,6 +155,30 @@ public class APIConsumer implements Serializable {
 				System.out.println("=============================================================================");
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void saveToFile() {
+		try {
+			FileWriter writer = new FileWriter("Data.txt", true);
+			writer.write("=============================================================================\n");
+			for (int i = 0; i < uni.length; i++) {
+				University myUni = uni[i];
+				writer.write((i + 1) + ":\t" + myUni.state_province + " - " + myUni.country + " - " + myUni.name + " - "
+						+ myUni.alpha_two_code + "\n");
+				for (int j = 0; j < myUni.domains.length; j++) {
+					writer.write("\tDomain " + (j + 1) + ": " + myUni.domains[j] + "\n");
+				}
+
+				for (int m = 0; m < myUni.web_pages.length; m++) {
+					writer.write("\tWeb page " + (m) + ": " + myUni.web_pages[m] + "\n");
+				}
+				writer.write("=============================================================================\n");
+			}
+			writer.close();
+			System.out.println("DATA SAVED!");
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

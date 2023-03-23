@@ -74,11 +74,10 @@ public class Menue {
 					}
 					break;
 				case 9:
-					search.searchFromDatabase();;
+					search.searchFromDatabase();
 					break;
 				case 10:
-					File save = new File();
-					save.dumpToFile();
+					newAPI.saveToFile();
 					break;
 				case 11:
 					break;
