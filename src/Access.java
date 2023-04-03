@@ -1,16 +1,16 @@
 import java.util.Scanner;
 
 public class Access {
-	static String user;
-	static String pass;
-	static String databaseName;
+	static String user = "sa";
+	static String pass = "root";
+	static String databaseName = "uniDatabase";
 
 	Menue menue = new Menue();
 
-	public Access giveUserAccess(Access giveUserAccess) {
-		String expectedUser = "sa";
-		String expectedPass = "root";
-		String expectedDatabase = "uniDatabase";
+	public void giveUserAccess() {
+//		String expectedUser = "sa";
+//		String expectedPass = "root";
+//		String expectedDatabase = "uniDatabase";
 
 		Scanner accessSc = new Scanner(System.in);
 		System.out.println("==================LOGIN TO THE DATABASE==================");
@@ -25,19 +25,17 @@ public class Access {
 			System.out.println("=========================================================");
 
 			// Check if the entered credentials match the expected values
-			if (databaseInput.equals(expectedDatabase) && userInput.equals(expectedUser)
-					&& passInput.equals(expectedPass)) {
-				Access.databaseName = databaseInput;
-				Access.user = userInput;
-				Access.pass = passInput;
+			if (databaseInput.equals(databaseName) && userInput.equals(user)
+					&& passInput.equals(pass)) {
+//				Access.databaseName = databaseInput;
+//				Access.user = userInput;
+//				Access.pass = passInput;
 				System.out.println("Access granted");
 				menue.showMenue();
 			} else {
 				System.out.println("Access denied. Incorrect username or password.");
 			}
 		}
-		return giveUserAccess;
-
 	}
 
 }
